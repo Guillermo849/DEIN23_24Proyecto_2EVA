@@ -49,7 +49,7 @@ public class AlumnoGestor {
 	 * 
 	 * @param alumno
 	 */
-	public void insertDeporte(Alumno alumno) {
+	public void insertAlumno(Alumno alumno) {
 		try {
 			conexion = new ConexionBDD();
 			String consulta = "INSERT INTO alumno VALUES('" + alumno.getDni() + "','" + alumno.getNombre() + "','"
@@ -68,7 +68,7 @@ public class AlumnoGestor {
 	 * 
 	 * @param alumno
 	 */
-	public void editarDeportista(Alumno alumno) {
+	public void editarAlumno(Alumno alumno) {
 		try {
 			conexion = new ConexionBDD();
 			String consulta = "UPDATE alumno SET nombre = ?, apellido1 = ?, apellido2 = ? WHERE dni LIKE '" + alumno.getDni() +"';";
@@ -90,7 +90,7 @@ public class AlumnoGestor {
 	 * 
 	 * @param alumno
 	 */
-	public void eliminarDeporte(Alumno alumno) {
+	public void eliminarAlumno(Alumno alumno) {
 
 		try {
 			conexion = new ConexionBDD();
