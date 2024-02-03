@@ -53,4 +53,8 @@ public class Libro {
 	public void setBaja(int baja) {
 		this.baja = baja;
 	}
+	@Override
+	public String toString() {
+		return titulo;
+	}
 }
