@@ -2,16 +2,16 @@ package model;
 
 public class HistoricoPrestamos {
 	private int idPrestamo;
-	private String dniAlumno;
-	private int codigoLibro;
+	private Alumno alumno;
+	private Libro libro;
 	private String fechaPrestamo;
 	private String fechaDevolucion;
 	
-	public HistoricoPrestamos(int idPrestamo, String dniAlumno, int codigoLibro, String fechaPrestamo,
+	public HistoricoPrestamos(int idPrestamo, Alumno alumno, Libro libro, String fechaPrestamo,
 			String fechaDevolucion) {
 		this.idPrestamo = idPrestamo;
-		this.dniAlumno = dniAlumno;
-		this.codigoLibro = codigoLibro;
+		this.alumno = alumno;
+		this.libro = libro;
 		this.fechaPrestamo = fechaPrestamo;
 		this.fechaDevolucion = fechaDevolucion;
 	}
@@ -24,20 +24,20 @@ public class HistoricoPrestamos {
 		this.idPrestamo = idPrestamo;
 	}
 
-	public String getDniAlumno() {
-		return dniAlumno;
+	public Alumno getalumno() {
+		return alumno;
 	}
 
-	public void setDniAlumno(String dniAlumno) {
-		this.dniAlumno = dniAlumno;
+	public void setalumno(Alumno alumno) {
+		this.alumno = alumno;
 	}
 
-	public int getCodigoLibro() {
-		return codigoLibro;
+	public Libro getlibro() {
+		return libro;
 	}
 
-	public void setCodigoLibro(int codigoLibro) {
-		this.codigoLibro = codigoLibro;
+	public void setlibro(Libro libro) {
+		this.libro = libro;
 	}
 
 	public String getFechaPrestamo() {
