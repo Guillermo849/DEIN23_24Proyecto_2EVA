@@ -37,4 +37,9 @@ public class Alumno {
 	public void setApellido2(String apellido2) {
 		this.apellido2 = apellido2;
 	}
+	
+	@Override
+	public String toString() {
+		return nombre;
+	}
 }
