@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="412.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AniadirEditarOlimpiadasController">
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="73.0" prefWidth="618.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#cancelar" text="Cancelar">
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <Label fx:id="lblTituloAniadirEditar" text="DATOS ALUMNO" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </Label>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="113.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="416.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="lblDato1" text="DNI:" visible="false" />
+            <Label fx:id="lblDato2" text="Nombre" visible="false" GridPane.rowIndex="1" />
+            <Label fx:id="lblDato3" text="Apellido1:" visible="false" GridPane.rowIndex="2" />
+            <Label fx:id="lblDato4" text="Apellido2:" visible="false" GridPane.rowIndex="3" />
+            <Label fx:id="lblDato5" prefHeight="17.0" prefWidth="43.0" text="Baja:" visible="false" GridPane.rowIndex="4" />
+            <TextField fx:id="txtFDNI" visible="false" GridPane.columnIndex="1" />
+            <TextField fx:id="txtFNombre" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtFApellido1" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtFApellido2" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="cmbxAlumno" prefWidth="150.0" visible="false" GridPane.columnIndex="1" />
+            <ComboBox fx:id="cmbxLibro" prefWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="fechaPrestamo" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="fechaDevolucion" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="txtFTitulo" visible="false" GridPane.columnIndex="1" />
+            <TextField fx:id="txtFAutor" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtFEditorial" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cmbxEstado" prefWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <CheckBox fx:id="chbxBaja" mnemonicParsing="false" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="cmbxPrestamos" prefHeight="25.0" prefWidth="307.0" visible="false" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
