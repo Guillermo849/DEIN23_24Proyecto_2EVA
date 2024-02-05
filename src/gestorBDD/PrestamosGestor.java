@@ -3,10 +3,13 @@ package gestorBDD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import conexion.ConexionBDD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Alumno;
+import model.Libro;
 import model.Prestamos;
 
 public class PrestamosGestor {
@@ -27,12 +30,12 @@ public class PrestamosGestor {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				int idPrestamo = rs.getInt("codigo");
-				String dniAlumno = rs.getString("titulo");
-				int codigoLibro = rs.getInt("baja");
-				String fechaPrestamo = rs.getString("autor");
-				
-				Prestamos p = new Prestamos(idPrestamo, dniAlumno, codigoLibro, fechaPrestamo);
+				int idPrestamo = rs.getInt("id_prestamo");
+				Alumno alumno = obtenerAlumno(rs.getString("dni_alumno"));
+				Libro libro = obtenerLibro(rs.getInt("codigo_libro"));
+				java.sql.Date sqlDate = rs.getDate("fecha_prestamo");
+                LocalDate fechaPrestamo = sqlDate.toLocalDate();
+				Prestamos p = new Prestamos(idPrestamo, alumno, libro, fechaPrestamo);
 				prestamos.add(p);
 			}
 			rs.close();
@@ -42,6 +45,50 @@ public class PrestamosGestor {
 			e.printStackTrace();
 		}
 		return prestamos;
+	}
+	
+	/**
+	 * Devuelve el Alumno que le corresponde
+	 * @param dni
+	 * @return
+	 */
+	private Alumno obtenerAlumno(String dni) {
+		Alumno alumno = null;
+		try {
+			conexion = new ConexionBDD();
+			String consulta = "SELECT * FROM alumno WHERE dni LIKE '" + dni + "';";
+			PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			alumno  = new Alumno(rs.getString("dni"), rs.getString("nombre"), rs.getString("apellido1"), rs.getString("apellido2"));
+			rs.close();
+			conexion.CloseConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return alumno;
+	}
+	
+	/**
+	 * Devuelve el Alumno que le corresponde
+	 * @param dni
+	 * @return
+	 */
+	private Libro obtenerLibro(int idLibro) {
+		Libro libro = null;
+		try {
+			conexion = new ConexionBDD();
+			String consulta = "SELECT * FROM libro WHERE codigo = " + idLibro + ";";
+			PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			libro  = new Libro(rs.getInt("codigo"), rs.getString("titulo"), rs.getString("autor"), rs.getString("editorial"), rs.getString("estado"), rs.getInt("baja"));
+			rs.close();
+			conexion.CloseConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return libro;
 	}
 
 	/**
@@ -54,11 +101,12 @@ public class PrestamosGestor {
 			conexion = new ConexionBDD();
 			String consulta = "INSERT INTO prestamo(dni_alumno,codigo_libro,fecha_prestamo) VALUES(?,?,?);";
 			PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
+			
+			pstmt.setString(1, prestamo.getAlumno().getDni());
+			pstmt.setInt(2, prestamo.getLibro().getCodigo());
+			java.sql.Date sqlD = java.sql.Date.valueOf(prestamo.getFechaPrestamo());
+			pstmt.setDate(3, sqlD);
 			pstmt.executeUpdate();
-			pstmt.setString(1, prestamo.getDniAlumno());
-			pstmt.setInt(2, prestamo.getCodigoLibro());
-			pstmt.setString(3, prestamo.getFechaPrestamo());
-
 			conexion.CloseConexion();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,9 +124,10 @@ public class PrestamosGestor {
 			String consulta = "UPDATE prestamo SET dni_alumno=? ,codigo_libro=? ,fecha_prestamo=? WHERE id_prestamo ="
 					+ prestamo.getIdPrestamo() + ";";
 			PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
-			pstmt.setString(1, prestamo.getDniAlumno());
-			pstmt.setInt(2, prestamo.getCodigoLibro());
-			pstmt.setString(3, prestamo.getFechaPrestamo());
+			pstmt.setString(1, prestamo.getAlumno().getDni());
+			pstmt.setInt(2, prestamo.getLibro().getCodigo());
+			java.sql.Date sqlD = java.sql.Date.valueOf(prestamo.getFechaPrestamo());
+			pstmt.setDate(3, sqlD);
 			pstmt.executeUpdate();
 
 			conexion.CloseConexion();
@@ -96,7 +145,7 @@ public class PrestamosGestor {
 
 		try {
 			conexion = new ConexionBDD();
-			String consulta = "DELETE FROM prestamo WHERE codigo = ?;";
+			String consulta = "DELETE FROM prestamo WHERE id_prestamo = ?;";
 			PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
 			pstmt.setInt(1, prestamo.getIdPrestamo());
 			pstmt.executeUpdate();

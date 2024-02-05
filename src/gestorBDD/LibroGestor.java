@@ -22,7 +22,7 @@ public class LibroGestor {
 		ObservableList<Libro> libros = FXCollections.observableArrayList();
 		try {
 			conexion = new ConexionBDD();
-			String consulta = "SELECT * FROM libro";
+			String consulta = "SELECT * FROM libro WHERE baja = 0";
 			PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
 			ResultSet rs = pstmt.executeQuery();
 
@@ -55,13 +55,13 @@ public class LibroGestor {
 			conexion = new ConexionBDD();
 			String consulta = "INSERT INTO libro(titulo,autor,editorial,estado,baja) VALUES(?,?,?,?,?);";
 			PreparedStatement pstmt = conexion.getConexion().prepareStatement(consulta);
-			pstmt.executeUpdate();
+			
 			pstmt.setString(1, libro.getTitulo());
 			pstmt.setString(2, libro.getAutor());
 			pstmt.setString(3, libro.getEditorial());
 			pstmt.setString(4, libro.getEstado());
 			pstmt.setInt(5, libro.getBaja());
-
+			pstmt.executeUpdate();
 			conexion.CloseConexion();
 		} catch (SQLException e) {
 			e.printStackTrace();
