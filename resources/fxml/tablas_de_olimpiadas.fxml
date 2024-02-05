@@ -37,9 +37,10 @@
           </Menu>
             <Menu fx:id="menuEditar1" mnemonicParsing="false" text="Informes">
                <items>
+                  <MenuItem fx:id="mnItemAyuda" mnemonicParsing="false" onAction="#mostrarAyuda" text="Ayuda" />
                   <MenuItem fx:id="mnItemInf2" mnemonicParsing="false" onAction="#mostrarInf2" text="Informe2" />
                   <MenuItem fx:id="mnItemInf3" mnemonicParsing="false" onAction="#mostrarInf3" text="Informe3" />
-                  <MenuItem fx:id="mnItemInf4" mnemonicParsing="false" onAction="#mostrarInf4" text="Informe4" />
+                  <MenuItem fx:id="mnItemInf41" mnemonicParsing="false" onAction="#mostrarInf4" text="Informe4" />
                </items>
             </Menu>
             <Menu fx:id="menuIdioma" mnemonicParsing="false" text="Idioma">
