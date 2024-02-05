@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -79,6 +80,9 @@ public class OlimpiadasController implements Initializable {
 
 	@FXML
 	private MenuItem mnItemInf4;
+	
+	@FXML
+    private MenuItem mnItemAyuda;
 
 	@FXML
 	private Label lblNomTabla;
@@ -432,6 +436,30 @@ public class OlimpiadasController implements Initializable {
 	void mostrarInf4(ActionEvent event) {
 
 	}
+	
+	/**
+	 * Muestra una pagina web offline
+	 * @param event
+	 */
+	@FXML
+    void mostrarAyuda(ActionEvent event) {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/visorWebOffline.fxml"));
+		Parent root;
+		try {
+			root = loader.load();
+			Scene scene = new Scene(root);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.setTitle("Ayuda");
+			stage.show();
+		} catch (IOException e) {
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setHeaderText(null);
+			alert.setContentText(e.getMessage());
+			e.printStackTrace();
+			alert.showAndWait();
+		}
+    }
 
 	/**
 	 * Editar los objetos
