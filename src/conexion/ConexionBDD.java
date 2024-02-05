@@ -23,7 +23,7 @@ public class ConexionBDD {
 	public ConexionBDD() {
 		prop = new Properties();
 		try (FileInputStream fis = new FileInputStream(
-				new File(this.getClass().getResource("/properties/propiedades.properties").getPath()))) {
+				new File(this.getClass().getResource("/properties/properties.properties").getPath()))) {
 			prop.load(fis);
 		} catch (IOException e) {
 			e.printStackTrace();
