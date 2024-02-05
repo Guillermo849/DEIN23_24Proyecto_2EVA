@@ -1,13 +1,20 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Prestamos {
 	private int idPrestamo;
 	private Alumno alumno;
 	private Libro libro;
-	private String fechaPrestamo;
+	private LocalDate fechaPrestamo;
 	
-	public Prestamos(int idPrestamo, Alumno alumno, Libro libro, String fechaPrestamo) {
+	public Prestamos(int idPrestamo, Alumno alumno, Libro libro, LocalDate fechaPrestamo) {
 		this.idPrestamo = idPrestamo;
+		this.alumno = alumno;
+		this.libro = libro;
+		this.fechaPrestamo = fechaPrestamo;
+	}
+	public Prestamos(Alumno alumno, Libro libro, LocalDate fechaPrestamo) {
 		this.alumno = alumno;
 		this.libro = libro;
 		this.fechaPrestamo = fechaPrestamo;
@@ -21,27 +28,32 @@ public class Prestamos {
 		this.idPrestamo = idPrestamo;
 	}
 
-	public Alumno getalumno() {
+	public Alumno getAlumno() {
 		return alumno;
 	}
 
-	public void setalumno(Alumno alumno) {
+	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
 	}
 
-	public Libro getlibro() {
+	public Libro getLibro() {
 		return libro;
 	}
 
-	public void setlibro(Libro libro) {
+	public void setLibro(Libro libro) {
 		this.libro = libro;
 	}
 
-	public String getFechaPrestamo() {
+	public LocalDate getFechaPrestamo() {
 		return fechaPrestamo;
 	}
 
-	public void setFechaPrestamo(String fechaPrestamo) {
+	public void setFechaPrestamo(LocalDate fechaPrestamo) {
 		this.fechaPrestamo = fechaPrestamo;
+	}
+	
+	@Override
+	public String toString() {
+		return alumno + " - " + libro + " (" + fechaPrestamo + ")";
 	}
 }

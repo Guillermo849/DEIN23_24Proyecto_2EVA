@@ -17,6 +17,14 @@ public class Libro {
 		this.baja = baja;
 	}
 	
+	public Libro(String titulo, String autor, String editorial, String estado, int baja) {
+		this.titulo = titulo;
+		this.autor = autor;
+		this.editorial = editorial;
+		this.estado = estado;
+		this.baja = baja;
+	}
+	
 	public int getCodigo() {
 		return codigo;
 	}
